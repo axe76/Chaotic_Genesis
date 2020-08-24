@@ -1,8 +1,109 @@
 import math
+from fuzzywuzzy import fuzz
+import random
+import string
+from difflib import *
 
-def chaotic_map(n,x_0,y_0):
-    d = 0.3
-    a = 2.5 
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+class Agent:
+
+    def __init__(self, length):
+
+        self.params = [random.uniform(2,4),random.uniform(0.1,4)] #(a,d) 
+        self.fitness = -1
+
+    def __str__(self):
+
+        return 'Params: ' + str(self.params) + ' Fitness: ' + str(self.fitness)
+
+in_str = None
+in_str_len = None
+population = 20
+generations = 10000
+
+
+def init_agents(population, length):
+    return [Agent(length) for _ in range(population)]
+
+def ga():
+
+    agents = init_agents(population, in_str_len)
+
+    for generation in range(generations):
+
+        print('Generation: ' + str(generation))
+
+        agents = fitness(agents)
+        agents = selection(agents)
+        agents = crossover(agents)
+        agents = mutation(agents)
+
+        if any(agent.fitness >= 90 for agent in agents):
+
+            print('Threshold met!')
+            exit(0)
+
+def fitness(agents):
+
+    for agent in agents:
+
+        a = agent.params[0]
+        d = agent.params[1]
+
+        cipher = encrypt(plaintext,a,d)
+
+        # agent.fitness = 100-fuzz.ratio(plaintext,cipher)
+
+        agent.fitness = 100-(similar(plaintext,cipher)*100)
+
+    return agents
+
+def selection(agents):
+    agents = sorted(agents, key=lambda agent: agent.fitness, reverse=True)
+    print('\n'.join(map(str, agents)))
+    agents = agents[:int(0.2 * len(agents))]
+    return agents
+
+def crossover(agents):
+
+    offspring = []
+
+    for _ in range((population - len(agents)) // 2):
+
+        parent1 = random.choice(agents)
+        parent2 = random.choice(agents)
+        child1 = Agent(2)
+        child2 = Agent(2)
+        # split = random.randint(0, in_str_len)
+        child1.params = [parent1.params[0],parent2.params[1]]
+        child2.params = [parent2.params[0],parent1.params[1]]
+
+        offspring.append(child1)
+        offspring.append(child2)
+
+    agents.extend(offspring)
+
+    return agents
+
+def mutation(agents):
+        
+    for agent in agents:
+
+        step_a = random.uniform(-0.2,0.2)
+        step_d = random.uniform(-0.2,0.2)
+        
+        if random.uniform(0.0, 1.0) <= 0.1:
+
+            agent.params[0] += step_a
+            agent.params[1] += step_d
+
+    return agents
+
+def chaotic_map(n,x_0,y_0,a,d):
+    # d = 0.3
+    # a = 2.5 
     x=[]
     x.append(x_0)
     y = []
@@ -31,8 +132,8 @@ def float_to_shuffled_ints(x,y):
             shuffled_y.append(i)
 
 
-    print('shuffled_x = ',shuffled_x)
-    print('shuffled_y = ',shuffled_y)
+    # print('shuffled_x = ',shuffled_x)
+    # print('shuffled_y = ',shuffled_y)
 
     key = []
     for i in shuffled_x:
@@ -40,21 +141,29 @@ def float_to_shuffled_ints(x,y):
 
     return key
 
-plaintext = input('Enter Message: ')
-ascii_lst = [ord(i) for i in plaintext]
-n = len(ascii_lst)
 
-ascii_avg = sum(ascii_lst)/n
 
-x_0 = ascii_avg/max(ascii_lst)
+def encrypt(plaintext,a,d):
+    ascii_lst = [ord(i) for i in plaintext]
+    n = len(ascii_lst)
 
-(x,y) = chaotic_map(n,x_0,y_0=0.2)
+    ascii_avg = sum(ascii_lst)/n
 
-private_key = float_to_shuffled_ints(x,y)
-print('Private Key = ',private_key)
+    x_0 = ascii_avg/max(ascii_lst)
+    y_0 = 0.2
+    (x,y) = chaotic_map(n,x_0,y_0,a,d)
 
-ciphertext = []
-for i in range(len(ascii_lst)):
-    ciphertext.append(chr(ascii_lst[i]+private_key[i]))
+    private_key = float_to_shuffled_ints(x,y)
+    # print('Private Key = ',private_key)
 
-print('CipherText = ',ciphertext)
+    ciphertext = []
+    for i in range(len(ascii_lst)):
+        ciphertext.append(chr(ascii_lst[i]+private_key[i]))
+
+    # print('CipherText = ',ciphertext)
+    return ''.join(ciphertext)
+
+# plaintext = input('Enter Message: ')
+plaintext = 'abcdefghi'
+
+ga()
