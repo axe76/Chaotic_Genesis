@@ -1,8 +1,39 @@
 from fuzzywuzzy import fuzz
 
-fitness = 100-fuzz.ratio('d','bcdef')
+import numpy as np
+from sklearn.metrics import jaccard_score
 
-print(fitness)
+def jackass(str1,str2):
+    asc1 = [ord(i) for i in str1]
+    asc2 = [ord(i) for i in str2]
+    result = jaccard_score(asc1, asc2, average='macro')
+    return 100- (result*100)
+
+def fit_ani(str1,str2):
+    asc1 = [ord(i) for i in str1]
+    asc2 = [ord(i) for i in str2]
+    s = 0
+    for i in range(len(asc1)):
+        t = asc1[i]-asc2[i]
+        s += abs(t)    
+    return s
+
+def hamming_distance(chaine1, chaine2):
+    return sum(c1 != c2 for c1, c2 in zip(chaine1, chaine2))
+
+
+str1 = 'abcefg'
+str2 = 'gfecba'
+fitness = 100-fuzz.ratio(str1,str2)
+
+
+print('Fuzz: ',fitness)
+
+print('Jaccard', jackass(str1,str2))
+
+print('Hamming: ',hamming_distance(str1,str2))
+
+print('Fit_Ani: ',fit_ani(str1,str2))
 
 
 '''
@@ -34,7 +65,27 @@ x_sorted = [0.997,0.862,0.761,0.531,0.3]
 [65,66,...]
 
 [cipher]
+
+
+Unni
+[90,81,81,67]
+
+znny
+
+abcd
+
+[67,68,69,70]
+
+90-67 +/-
+81-68
+.
+.
+
+
 '''
+
+
+
 
 
 
