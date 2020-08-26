@@ -16,7 +16,7 @@ class Agent:
 
 in_str = None
 in_str_len = None
-population = 20
+population = 5
 generations = 10000
 
 
@@ -33,7 +33,7 @@ def ga():
         agents = crossover(agents)
         agents = mutation(agents)
 
-        if any(agent.fitness >= 90 for agent in agents):
+        if any(agent.fitness >= 99 for agent in agents):
 
             print('Threshold met!')
             exit(0)
@@ -43,12 +43,24 @@ def init_agents(population, length):
 
     return [Agent(length) for _ in range(population)]
 
+def ani_jackard(s1,s2):
+    str1 = [ord(i) for i in s1]
+    str2 = [ord(i) for i in s2]
+
+    str1 = set(str1)
+    str2 = set(str2)
+
+    score = (str1 & str2)
+    score_u = str1|str2
+
+    return 100-(len(score)/len(score_u))*100
 
 def fitness(agents):
 
     for agent in agents:
 
-        agent.fitness = fuzz.ratio(agent.string, in_str)
+        # agent.fitness = fuzz.ratio(agent.string, in_str)
+        agent.fitness = ani_jackard(agent.string,in_str)
 
     return agents
 
@@ -99,6 +111,6 @@ def mutation(agents):
 
 if __name__ == '__main__':
 
-    in_str = 'Assamwee'
+    in_str = 'Assamwee'*10
     in_str_len = len(in_str)
     ga()
