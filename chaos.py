@@ -29,15 +29,31 @@ def ga():
 
         print('Generation: ' + str(generation))
 
+        temp_fitness = []
+        
         agents = fitness(agents)
+
+        for agent in agents:
+            temp_fitness.append(agent.fitness)
+
+        # print(temp_fitness)
+
+        current_max_fitness = max(temp_fitness)
+
+        count = temp_fitness.count(current_max_fitness)
+
+        print('Current_max_fitness',current_max_fitness)
+        print('Count: ',count)
+
+        if count/len(agents) >= 0.5 and current_max_fitness >= 90:
+            print('Bazinga!')
+            break
+
         agents = selection(agents)
         agents = crossover(agents)
         agents = mutation(agents)
 
-        if any(agent.fitness >= 99 for agent in agents):
 
-            print('Threshold met!')
-            exit(0)
 
 def ani_jackard(s1,s2):
     str1 = [ord(i) for i in s1]
@@ -171,10 +187,10 @@ def encrypt(plaintext,a,d):
 
 in_str = None
 in_str_len = None
-population = 10
+population = 20
 generations = 10000
 
 # plaintext = input('Enter Message: ')
-plaintext = 'abcdefghij'*20
+plaintext = 'abcdefghij'*10
 
 ga()
