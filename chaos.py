@@ -18,12 +18,6 @@ class Agent:
 
         return 'Params: ' + str(self.params) + ' Fitness: ' + str(self.fitness)
 
-in_str = None
-in_str_len = None
-population = 20
-generations = 10000
-
-
 def init_agents(population, length):
     return [Agent(length) for _ in range(population)]
 
@@ -40,10 +34,23 @@ def ga():
         agents = crossover(agents)
         agents = mutation(agents)
 
-        if any(agent.fitness >= 90 for agent in agents):
+        if any(agent.fitness >= 99 for agent in agents):
 
             print('Threshold met!')
             exit(0)
+
+def ani_jackard(s1,s2):
+    str1 = [ord(i) for i in s1]
+    str2 = [ord(i) for i in s2]
+
+    str1 = set(str1)
+    str2 = set(str2)
+
+    score = (str1 & str2)
+    score_u = str1|str2
+
+    return 100-(len(score)/len(score_u))*100
+
 
 def fitness(agents):
 
@@ -55,8 +62,7 @@ def fitness(agents):
         cipher = encrypt(plaintext,a,d)
 
         # agent.fitness = 100-fuzz.ratio(plaintext,cipher)
-
-        agent.fitness = 100-(similar(plaintext,cipher)*100)
+        agent.fitness = ani_jackard(plaintext,cipher)
 
     return agents
 
@@ -163,7 +169,12 @@ def encrypt(plaintext,a,d):
     # print('CipherText = ',ciphertext)
     return ''.join(ciphertext)
 
+in_str = None
+in_str_len = None
+population = 10
+generations = 10000
+
 # plaintext = input('Enter Message: ')
-plaintext = 'abcdefghi'
+plaintext = 'abcdefghij'*20
 
 ga()
