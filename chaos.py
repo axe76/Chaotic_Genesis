@@ -185,12 +185,11 @@ def encrypt(plaintext,a,d):
     # print('CipherText = ',ciphertext)
     return ''.join(ciphertext)
 
-# in_str = None
-# in_str_len = None
-# population = 20
-# generations = 10000
+in_str = None
+in_str_len = None
+population = 20
+generations = 100000
 
 # plaintext = input('Enter Message: ')
-def genesis():
-    plaintext = 'abcdefghij'*10
-    ga()
+plaintext = 'abcdefghij'
+ga()
