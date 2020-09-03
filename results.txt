@@ -1,3 +1,7 @@
+Parameters:
+Population = 20
+Max Generations Limit= 10000
+
 S.no.        Length of Plaintext      No. of Generations      Max Fitness    
 
 1.                  10                      539             92.3076923076923
