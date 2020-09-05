@@ -6,7 +6,7 @@ class Agent:
 
     def __init__(self, length):
 
-        self.params = [random.uniform(2,4),random.uniform(0.1,4)] #(a,d) 
+        self.params = [random.uniform(1,4),random.uniform(0.1,4)] #(a,b) 
         self.fitness = -1
 
     def __str__(self):
@@ -195,7 +195,7 @@ population = 20
 generations = 100000
 
 # plaintext = input('Enter Message: ')
-plaintext = 'abcdefghij'*30
+plaintext = 'abcdefghij'*100
 ga()
 
 
@@ -210,15 +210,12 @@ xlist = np.array(a_vals)
 ylist = np.array(b_vals)
 zlist = np.array(f_vals)
 
-
+plt.xlabel('Variation of a')
+plt.ylabel('Variation of b')
+plt.title('Length of Plaintext: {}'.format(len(plaintext)))
 plt.scatter(xlist, ylist, c=zlist)
 cbar= plt.colorbar()
-cbar.set_label("elevation (m)", labelpad=+1)
+cbar.set_label("Fitness")#,labelpad=+1)
 
 plt.show()
 
-# fig = plt.figure()
-# ax = Axes3D(fig)
-# surf = ax.plot_trisurf(xlist, ylist, zlist, cmap=cm.jet, linewidth=0.1)
-# fig.colorbar(surf, shrink=0.5, aspect=5)
-# plt.show()
