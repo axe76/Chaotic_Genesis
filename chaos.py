@@ -11,7 +11,7 @@ class Agent:
 
     def __init__(self, length):
 
-        self.params = [random.uniform(2,4),random.uniform(0.1,4)] #(a,d) 
+        self.params = [random.uniform(1,4),random.uniform(0.1,4)] #(a,d) 
         self.fitness = -1
 
     def __str__(self):
@@ -191,5 +191,5 @@ population = 20
 generations = 100000
 
 # plaintext = input('Enter Message: ')
-plaintext = 'abcdefghij'
+plaintext = 'abcdefghij'*100
 ga()
