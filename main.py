@@ -14,10 +14,6 @@ class Agent:
 
         return 'String: ' + str(self.string) + ' Fitness: ' + str(self.fitness)
 
-in_str = None
-in_str_len = None
-population = 5
-generations = 10000
 
 
 def ga():
@@ -109,8 +105,13 @@ def mutation(agents):
     return agents
 
 
+in_str = None
+in_str_len = None
+population = 5
+generations = 10000
+
 if __name__ == '__main__':
 
-    in_str = 'Assamwee'*10
+    in_str = 'abcdefghij'*100
     in_str_len = len(in_str)
     ga()
