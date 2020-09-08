@@ -6,7 +6,7 @@ Created on Sat Aug 22 19:38:03 2020
 """
 import math
 import random
-'''from sklearn.metrics import jaccard_score
+'''
 d = 0.3
 a = 2.5
 
