@@ -18,7 +18,7 @@ This repository contains all codes related to our research paper titled "A Novel
 
 ## Cloning
 ```bash
-$ git clone https://github.com/7enTropy7/NEAT_Puzzle_8.git
+$ git clone https://github.com/axe76/Chaotic_Genesis.git
 ```
 
 ## Dependencies
