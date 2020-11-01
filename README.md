@@ -12,6 +12,7 @@
 
 # Chaotic_Genesis
 
+With meteoric developments in communication systems and data storage technologies, the need for secure data transmission is more crucial than ever. The level of security provided by any cryptosystem relies on the sensitivity of the private key, size of the key space as well as the trapdoor function being used. In order to satisfy the aforementioned constraints, there has been a growing interest over the past few years, in studying the behavior of chaotic systems and their applications in various fields such as data encryption due to characteristics like randomness, unpredictability and sensitivity of the generated sequence to the initial value and its parameters. This paper utilizes a novel 2D chaotic function that displays a uniform bifurcation over a large range of parameters and exhibits high levels of chaotic behavior to generate a random sequence that is used to encrypt the input data. The proposed method uses a genetic algorithm to optimize the parameters of the map to enhance security for any given textual data. Various analyses demonstrate an adequately large key space and the existence of multiple global optima indicating the necessity of the proposed system and the security provided by it. <br/>
 
 This repository contains all codes related to our research paper titled "A Novel Chaotic System for Text Encryption Optimized with Genetic Algorithm". The paper is available here: <br/>
 https://thesai.org/Publications/ViewPaper?Volume=11&Issue=10&Code=IJACSA&SerialNo=5
