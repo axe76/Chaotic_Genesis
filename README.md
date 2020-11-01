@@ -13,7 +13,8 @@
 # Chaotic_Genesis
 
 
-This repository contains all codes related to our research paper titled "A Novel Chaotic System for Text Encryption Optimized with Genetic Algorithm". The paper is available here:
+This repository contains all codes related to our research paper titled "A Novel Chaotic System for Text Encryption Optimized with Genetic Algorithm". The paper is available here: 
+https://thesai.org/Publications/ViewPaper?Volume=11&Issue=10&Code=IJACSA&SerialNo=5
 
 
 ## Cloning
