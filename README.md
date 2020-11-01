@@ -44,7 +44,18 @@ $ python3 chaos.py
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ## Citation
-If you find this code useful in your research, please consider citing (BibTex):
+If you find this code useful in your research, please consider citing (BibTex): <br/>
+@article{Menon2020,
+title = {A Novel Chaotic System for Text Encryption Optimized with Genetic Algorithm},
+journal = {International Journal of Advanced Computer Science and Applications},
+doi = {10.14569/IJACSA.2020.0111005},
+url = {http://dx.doi.org/10.14569/IJACSA.2020.0111005},
+year = {2020},
+publisher = {The Science and Information Organization},
+volume = {11},
+number = {10},
+author = {Unnikrishnan Menon and Anirudh Rajiv Menon and Atharva Hudlikar}
+}
 
 ```
 
