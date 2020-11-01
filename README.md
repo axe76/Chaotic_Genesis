@@ -46,7 +46,7 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 ## Citation
 If you find this code useful in your research, please consider citing (BibTex): 
 ```
-@article{Menon2020, <br/>
+@article{Menon2020, 
 title = {A Novel Chaotic System for Text Encryption Optimized with Genetic Algorithm},
 journal = {International Journal of Advanced Computer Science and Applications},
 doi = {10.14569/IJACSA.2020.0111005},
